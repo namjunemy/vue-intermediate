@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
+    <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
     <TodoList v-bind:propsData="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
@@ -19,12 +19,19 @@
         todoItems: []
       }
     },
+    methods: {
+      addOneItem: function (todoItem) {
+        var obj = {completed: false, item: todoItem};
+        sessionStorage.setItem(todoItem, JSON.stringify(obj));
+        this.todoItems.push(obj);
+      }
+    },
     created: function () {
-      if (localStorage.length > 0) {
-        for (var i = 0; i < localStorage.length; i++) {
-          if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-            console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
-            this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+      if (sessionStorage.length > 0) {
+        for (var i = 0; i < sessionStorage.length; i++) {
+          if (sessionStorage.key(i) !== 'loglevel:webpack-dev-server') {
+            console.log(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
+            this.todoItems.push(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
           }
         }
       }

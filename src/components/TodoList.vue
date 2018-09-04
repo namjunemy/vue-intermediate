@@ -18,13 +18,13 @@
     props: ['propsData'],
     methods: {
       removeTodo: function (todoItem, index) {
-        localStorage.removeItem(todoItem.item);
+        sessionStorage.removeItem(todoItem.item);
         this.propsData.splice(index, 1);
       },
       toggleComplete: function (todoItem, index) {
         todoItem.completed = !todoItem.completed;
-        localStorage.removeItem(todoItem.item);
-        localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+        sessionStorage.removeItem(todoItem.item);
+        sessionStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       }
     }
   }
