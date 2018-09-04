@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList v-bind:propsData="todoItems"></TodoList>
+    <TodoList v-bind:propsData="todoItems" v-on:removeTodoItem="removeOneItem"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -24,6 +24,10 @@
         var obj = {completed: false, item: todoItem};
         sessionStorage.setItem(todoItem, JSON.stringify(obj));
         this.todoItems.push(obj);
+      },
+      removeOneItem: function (todoItem, index) {
+        sessionStorage.removeItem(todoItem.item);
+        this.todoItems.splice(index, 1);
       }
     },
     created: function () {
