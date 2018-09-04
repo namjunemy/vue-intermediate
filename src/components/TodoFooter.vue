@@ -8,7 +8,7 @@
   export default {
     methods: {
       clearTodo: function() {
-        sessionStorage.clear();
+        this.$emit('clearAll');
       }
     }
   }
