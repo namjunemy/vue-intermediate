@@ -22,7 +22,7 @@
     },
     methods: {
       removeTodo: function (todoItem, index) {
-        localStorage.removeItem(todoItem);
+        localStorage.removeItem(todoItem.item);
         this.todoItems.splice(index, 1);
       },
       toggleComplete: function (todoItem, index) {
