@@ -2,7 +2,8 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList v-bind:propsData="todoItems" v-on:removeTodoItem="removeOneItem"></TodoList>
+    <TodoList v-bind:propsData="todoItems" v-on:removeTodoItem="removeOneItem"
+              v-on:toggleTodoItem="toggleOneItem"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -28,6 +29,11 @@
       removeOneItem: function (todoItem, index) {
         sessionStorage.removeItem(todoItem.item);
         this.todoItems.splice(index, 1);
+      },
+      toggleOneItem: function (todoItem, index) {
+        this.todoItems[index].completed = !this.todoItems[index].completed;
+        sessionStorage.removeItem(todoItem.item);
+        sessionStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       }
     },
     created: function () {

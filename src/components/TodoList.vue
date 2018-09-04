@@ -17,13 +17,11 @@
   export default {
     props: ['propsData'],
     methods: {
-      removeTodo: function(todoItem, index) {
+      removeTodo: function (todoItem, index) {
         this.$emit('removeTodoItem', todoItem, index);
       },
       toggleComplete: function (todoItem, index) {
-        todoItem.completed = !todoItem.completed;
-        sessionStorage.removeItem(todoItem.item);
-        sessionStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+        this.$emit('toggleTodoItem', todoItem, index);
       }
     }
   }
