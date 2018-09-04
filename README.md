@@ -2,18 +2,9 @@
 
 > A Vue.js project
 
-## Initial setup
-``` bash
-npm install -g @vue/cli
-
-vue init webpack-simple vue-todo
-```
-
 ## Build Setup
 
 ``` bash
-cd vue-todo
-
 # install dependencies
 npm install
 
