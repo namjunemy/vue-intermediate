@@ -9,9 +9,9 @@
     methods: {
       clearTodo: function() {
         this.$emit('clearAll');
-      }
-    }
-  }
+      },
+    },
+  };
 </script>
 
 <style scoped>
@@ -23,6 +23,7 @@
     border-radius: 5px;
     margin: 0 auto;
   }
+
   .clearAllBtn {
     color: #e20303;
     display: block;

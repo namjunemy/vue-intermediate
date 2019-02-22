@@ -10,40 +10,40 @@
 </template>
 
 <script>
-  import TodoHeader from './components/TodoHeader'
-  import TodoInput from './components/TodoInput'
-  import TodoList from './components/TodoList'
-  import TodoFooter from './components/TodoFooter'
+  import TodoHeader from './components/TodoHeader';
+  import TodoInput from './components/TodoInput';
+  import TodoList from './components/TodoList';
+  import TodoFooter from './components/TodoFooter';
 
   export default {
-    data: function () {
+    data: function() {
       return {
-        todoItems: []
-      }
+        todoItems: [],
+      };
     },
     methods: {
-      addOneItem: function (todoItem) {
-        var obj = {completed: false, item: todoItem};
+      addOneItem: function(todoItem) {
+        const obj = {completed: false, item: todoItem};
         sessionStorage.setItem(todoItem, JSON.stringify(obj));
         this.todoItems.push(obj);
       },
-      removeOneItem: function (todoItem, index) {
+      removeOneItem: function(todoItem, index) {
         sessionStorage.removeItem(todoItem.item);
         this.todoItems.splice(index, 1);
       },
-      toggleOneItem: function (todoItem, index) {
+      toggleOneItem: function(todoItem, index) {
         this.todoItems[index].completed = !this.todoItems[index].completed;
         sessionStorage.removeItem(todoItem.item);
         sessionStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       },
-      clearAll: function () {
+      clearAll: function() {
         this.todoItems = [];
         sessionStorage.clear();
-      }
+      },
     },
-    created: function () {
+    created: function() {
       if (sessionStorage.length > 0) {
-        for (var i = 0; i < sessionStorage.length; i++) {
+        for (let i = 0; i < sessionStorage.length; i++) {
           if (sessionStorage.key(i) !== 'loglevel:webpack-dev-server') {
             console.log(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
             this.todoItems.push(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
@@ -55,9 +55,9 @@
       'TodoHeader': TodoHeader,
       'TodoInput': TodoInput,
       'TodoList': TodoList,
-      'TodoFooter': TodoFooter
-    }
-  }
+      'TodoFooter': TodoFooter,
+    },
+  };
 </script>
 
 <style>

@@ -24,17 +24,17 @@
 </template>
 
 <script>
-  import Modal from './common/Modal'
+  import Modal from './common/Modal';
 
   export default {
-    data: function () {
+    data: function() {
       return {
-        newTodoItem: "",
-        showModal: false
-      }
+        newTodoItem: '',
+        showModal: false,
+      };
     },
     methods: {
-      addTodo: function () {
+      addTodo: function() {
         if (this.newTodoItem !== '') {
           this.$emit('addTodoItem', this.newTodoItem);
           this.clearInput();
@@ -42,14 +42,14 @@
           this.showModal = !this.showModal;
         }
       },
-      clearInput: function () {
+      clearInput: function() {
         this.newTodoItem = '';
-      }
+      },
     },
     components: {
-      'Modal': Modal
-    }
-  }
+      'Modal': Modal,
+    },
+  };
 </script>
 
 <style scoped>

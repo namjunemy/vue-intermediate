@@ -17,14 +17,14 @@
   export default {
     props: ['propsData'],
     methods: {
-      removeTodo: function (todoItem, index) {
+      removeTodo: function(todoItem, index) {
         this.$emit('removeTodoItem', todoItem, index);
       },
-      toggleComplete: function (todoItem, index) {
+      toggleComplete: function(todoItem, index) {
         this.$emit('toggleTodoItem', todoItem, index);
-      }
-    }
-  }
+      },
+    },
+  };
 </script>
 
 <style scoped>
