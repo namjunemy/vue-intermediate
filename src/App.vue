@@ -16,32 +16,32 @@
   import TodoFooter from './components/TodoFooter';
 
   export default {
-    data: function() {
+    data() {
       return {
         todoItems: [],
       };
     },
     methods: {
-      addOneItem: function(todoItem) {
+      addOneItem(todoItem) {
         const obj = {completed: false, item: todoItem};
         sessionStorage.setItem(todoItem, JSON.stringify(obj));
         this.todoItems.push(obj);
       },
-      removeOneItem: function(todoItem, index) {
+      removeOneItem(todoItem, index) {
         sessionStorage.removeItem(todoItem.item);
         this.todoItems.splice(index, 1);
       },
-      toggleOneItem: function(todoItem, index) {
+      toggleOneItem(todoItem, index) {
         this.todoItems[index].completed = !this.todoItems[index].completed;
         sessionStorage.removeItem(todoItem.item);
         sessionStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       },
-      clearAll: function() {
+      clearAll() {
         this.todoItems = [];
         sessionStorage.clear();
       },
     },
-    created: function() {
+    created() {
       if (sessionStorage.length > 0) {
         for (let i = 0; i < sessionStorage.length; i++) {
           if (sessionStorage.key(i) !== 'loglevel:webpack-dev-server') {
