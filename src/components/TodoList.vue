@@ -4,9 +4,9 @@
       <li v-for="(todoItem, index) in this.todoItems" v-bind:key="todoItem.item"
           class="shadow">
         <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}"
-           v-on:click="toggleComplete(todoItem, index)"></i>
+           v-on:click="toggleComplete({todoItem, index})"></i>
         <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
-        <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+        <span class="removeBtn" v-on:click="removeTodo({todoItem, index})">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex';
+  import {mapGetters, mapMutations} from 'vuex';
 
   export default {
     computed: {
@@ -27,12 +27,11 @@
       }),
     },
     methods: {
-      removeTodo(todoItem, index) {
-        this.$store.commit('removeOneItem', {todoItem, index});
-      },
-      toggleComplete(todoItem, index) {
-        this.$store.commit('toggleOneItem', {todoItem, index});
-      },
+      ...mapMutations({
+        // 인자를 넘기는 부분을 생략하더라도 알아서 처리한다.
+        removeTodo: 'removeOneItem',
+        toggleComplete: 'toggleOneItem',
+      }),
     },
   };
 </script>
